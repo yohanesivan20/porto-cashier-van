@@ -1,24 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import Navbar from './components/Navbar';
+import Categories from './components/Categories';
+import ListMenu from './components/Menus';
+import Cart from './components/Cart';
 
-function App() {
+const App = () => {
+  const [selectedCategory, setSelectedCategory] = useState([1])
+
+  const handleCategorySelect = (category) => {
+    setSelectedCategory(category)
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Navbar/>
+      <div className='flex justify-center h-screen'>
+        <Categories onClick={handleCategorySelect}/>
+        <ListMenu selectedCategory={selectedCategory}/>
+        <Cart/>
+      </div>
+    </>
   );
 }
 
